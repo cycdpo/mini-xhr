@@ -1,0 +1,17 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "loose": true,
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    "syntax-dynamic-import"
+  ],
+  "ignore": [
+    "node_modules"
+  ]
+}

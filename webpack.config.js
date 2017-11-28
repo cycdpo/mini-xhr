@@ -8,7 +8,7 @@ var
   , CleanWebpackPlugin = require('clean-webpack-plugin')
 
   // mock api
-  , getDataAjax = require('./mock/api/getData.ajax.js')
+  , getDataAjax = require('./mock/api/getData.ajax')
 ;
 
 var
@@ -90,18 +90,18 @@ if (IS_DEVELOPMENT) {
 
     new BrowserSyncPlugin({
       server: {
-        baseDir: 'dist',
+        baseDir: 'dist'
       },
       logLevel: "debug",
       middleware: [
         {
           route: "/getData",
-          handle: getDataAjax(),
+          handle: getDataAjax()
         },
       ],
     }, {
-      reload: true,
-    }),
+      reload: true
+    })
   );
 }
 

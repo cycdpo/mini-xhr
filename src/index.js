@@ -10,7 +10,7 @@
  * @returns {Promise}
  */
 export default (url, {
-  method = 'POST',
+  method = 'GET',
   mode = 'xhr',
   dataType = '',
   data = {},
@@ -78,12 +78,16 @@ export default (url, {
         , oScript = document.createElement('script')
       ;
 
+      oScript.src = url;
+
       //set oScript.type
       oScript.type = 'text/javascript';
 
       if (mode === 'script') {
         // set oScript.src
-        oScript.src = url + '?' + sData;
+        if(sData) {
+          oScript.src += '?' + sData;
+        }
 
         let
           // callback resolve
@@ -130,7 +134,11 @@ export default (url, {
         };
 
         // set oScript.src
-        oScript.src = url + '?' + sData + '&callback=' + callbackName;
+        if(sData) {
+          oScript.src += '?' + sData + '&callback=' + callbackName;
+        } else {
+          oScript.src += '?callback=' + callbackName;
+        }
 
         // timeout handle
         if (timeout) {

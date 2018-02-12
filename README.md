@@ -49,7 +49,10 @@ miniXhr(url [, options])
     * `'xhr'`(Default)
     * `'jsonp'`
     * `'script'`
-  * `method`: [String] Xhr action. Default `'POST'`.
+  * `method`: [String] Xhr action.
+    * `'GET'`(Default)
+    * `'POST'`
+    * ...
   * `data`: [Object] The key-value pair that needs to be transmitted. Default `{}`.
   * `dataType`: [String] Request data type. Default `''`. Other: `'json'`
   * `timeout`: [Number] Set the timeout. Default `0`.
@@ -61,7 +64,6 @@ miniXhr(url [, options])
 <script>
   miniXhr('/getData' , {
     mode: 'jsonp',
-    dataType: 'json',
     data: {
       key1: value1,
       key2: value2,

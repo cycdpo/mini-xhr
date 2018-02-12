@@ -7,7 +7,7 @@
 		exports["miniXhr"] = factory();
 	else
 		root["miniXhr"] = factory();
-})(this, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -92,7 +92,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 /* harmony default export */ __webpack_exports__["default"] = (function (url, _ref) {
   var _ref$method = _ref.method,
-      method = _ref$method === undefined ? 'POST' : _ref$method,
+      method = _ref$method === undefined ? 'GET' : _ref$method,
       _ref$mode = _ref.mode,
       mode = _ref$mode === undefined ? 'xhr' : _ref$mode,
       _ref$dataType = _ref.dataType,
@@ -161,12 +161,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var oHead = document.querySelector('head'),
           oScript = document.createElement('script');
 
+      oScript.src = url;
+
       //set oScript.type
       oScript.type = 'text/javascript';
 
       if (mode === 'script') {
         // set oScript.src
-        oScript.src = url + '?' + sData;
+        if (sData) {
+          oScript.src += '?' + sData;
+        }
 
         var
         // callback resolve
@@ -209,7 +213,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
 
         // set oScript.src
-        oScript.src = url + '?' + sData + '&callback=' + callbackName;
+        if (sData) {
+          oScript.src += '?' + sData + '&callback=' + callbackName;
+        } else {
+          oScript.src += '?callback=' + callbackName;
+        }
 
         // timeout handle
         if (timeout) {

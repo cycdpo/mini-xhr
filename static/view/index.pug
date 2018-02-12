@@ -40,10 +40,11 @@ html(lang='en')
 
     script.
       document.getElementById('test').addEventListener('click', function () {
-        console.log('get');
+        console.log('POST');
 
         miniXhr('/getData', {
           dataType: 'json',
+          method: 'POST',
           data: {
             test: 'test1'
           }

@@ -87,7 +87,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * @param dataType Default: '' ('json' | '')
  * @param data
  * @param timeout
- * @param timeoutCB
+ * @param ontimeoutCB
  * @returns {Promise}
  */
 /* harmony default export */ __webpack_exports__["default"] = (function (url, _ref) {
@@ -102,7 +102,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       _ref$timeout = _ref.timeout,
       timeout = _ref$timeout === undefined ? 0 : _ref$timeout,
       _ref$ontimeoutCB = _ref.ontimeoutCB,
-      timeoutCB = _ref$ontimeoutCB === undefined ? null : _ref$ontimeoutCB;
+      ontimeoutCB = _ref$ontimeoutCB === undefined ? null : _ref$ontimeoutCB;
 
 
   return new Promise(function (resolve, reject) {
@@ -140,8 +140,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       xhr.onreadystatechange = handler;
       xhr.timeout = timeout; // 0：unlimit
 
-      if (timeoutCB) {
-        xhr.ontimeout = timeoutCB;
+      if (ontimeoutCB) {
+        xhr.ontimeout = ontimeoutCB;
       }
 
       // set request header

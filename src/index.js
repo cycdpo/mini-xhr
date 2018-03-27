@@ -6,7 +6,7 @@
  * @param dataType Default: '' ('json' | '')
  * @param data
  * @param timeout
- * @param timeoutCB
+ * @param ontimeoutCB
  * @returns {Promise}
  */
 export default (url, {
@@ -15,7 +15,7 @@ export default (url, {
   dataType = '',
   data = {},
   timeout = 0,
-  ontimeoutCB: timeoutCB = null,
+  ontimeoutCB = null,
 }) => {
 
   return new Promise((resolve, reject) => {
@@ -43,8 +43,8 @@ export default (url, {
       xhr.onreadystatechange = handler;
       xhr.timeout = timeout;                          // 0：unlimit
 
-      if (timeoutCB) {
-        xhr.ontimeout = timeoutCB;
+      if (ontimeoutCB) {
+        xhr.ontimeout = ontimeoutCB;
       }
 
       // set request header

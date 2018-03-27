@@ -6,6 +6,7 @@
 [![devDependencies Status][david-dev-image]][david-dev-url]
 [![node version][node-image]][node-url]
 [![npm download][download-image]][download-url]
+[![jsdelivr][jsdelivr-image]][jsdelivr-url]
 [![npm license][license-image]][download-url]
 
 [npm-image]: https://img.shields.io/npm/v/mini-xhr.svg?style=flat-square
@@ -20,6 +21,8 @@
 [node-url]: http://nodejs.org/download/
 [download-image]: https://img.shields.io/npm/dm/mini-xhr.svg?style=flat-square
 [download-url]: https://npmjs.org/package/mini-xhr
+[jsdelivr-image]: https://data.jsdelivr.com/v1/package/npm/mini-xhr/badge
+[jsdelivr-url]: https://www.jsdelivr.com/package/npm/mini-xhr
 [license-image]: https://img.shields.io/npm/l/mini-xhr.svg?style=flat-square
 
 ## Install
@@ -73,5 +76,11 @@ miniXhr(url [, options])
       // data handle
     });
 </script>
+```
+
+## CDN
+To use via a CDN include this in your html:
+```text
+<script src="https://cdn.jsdelivr.net/npm/mini-xhr@0.0.3/build/miniXhr.min.js"></script>
 ```
 

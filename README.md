@@ -81,6 +81,6 @@ miniXhr(url [, options])
 ## CDN
 To use via a CDN include this in your html:
 ```text
-<script src="https://cdn.jsdelivr.net/npm/mini-xhr@0.0.3/build/miniXhr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mini-xhr@0/build/miniXhr.min.js"></script>
 ```
 

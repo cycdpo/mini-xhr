@@ -1,3 +1,8 @@
+/*!
+ * mini-xhr v0.1.1
+ * Homepage: https://github.com/cycdpo/mini-xhr#readme
+ * Released under the MIT License.
+ */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -46,17 +51,32 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
 /******/ 	// define __esModule on exports
 /******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -98,21 +118,18 @@ __webpack_require__.r(__webpack_exports__);
  */
 /* harmony default export */ __webpack_exports__["default"] = (function (url, _ref) {
   var _ref$method = _ref.method,
-      method = _ref$method === undefined ? 'GET' : _ref$method,
+      method = _ref$method === void 0 ? 'GET' : _ref$method,
       _ref$mode = _ref.mode,
-      mode = _ref$mode === undefined ? 'xhr' : _ref$mode,
+      mode = _ref$mode === void 0 ? 'xhr' : _ref$mode,
       _ref$dataType = _ref.dataType,
-      dataType = _ref$dataType === undefined ? '' : _ref$dataType,
+      dataType = _ref$dataType === void 0 ? '' : _ref$dataType,
       _ref$data = _ref.data,
-      data = _ref$data === undefined ? {} : _ref$data,
+      data = _ref$data === void 0 ? {} : _ref$data,
       _ref$timeout = _ref.timeout,
-      timeout = _ref$timeout === undefined ? 0 : _ref$timeout,
+      timeout = _ref$timeout === void 0 ? 0 : _ref$timeout,
       _ref$ontimeoutCB = _ref.ontimeoutCB,
-      ontimeoutCB = _ref$ontimeoutCB === undefined ? null : _ref$ontimeoutCB;
-
-
+      ontimeoutCB = _ref$ontimeoutCB === void 0 ? null : _ref$ontimeoutCB;
   return new Promise(function (resolve, reject) {
-
     // set data string
     var sData = '';
 
@@ -123,6 +140,7 @@ __webpack_require__.r(__webpack_exports__);
         // not first key
         prefix = '&';
       }
+
       sData += prefix + key + '=' + data[key];
     }
 
@@ -131,6 +149,7 @@ __webpack_require__.r(__webpack_exports__);
         if (this.readyState !== 4) {
           return;
         }
+
         if (this.status >= 200 && this.status < 400) {
           console.log(this.response);
           resolve(this.response);
@@ -141,16 +160,15 @@ __webpack_require__.r(__webpack_exports__);
 
       // mode: xhr
       var xhr = new XMLHttpRequest();
-
       xhr.open(method, url, true);
       xhr.onreadystatechange = handler;
       xhr.timeout = timeout; // 0：unlimit
 
       if (ontimeoutCB) {
         xhr.ontimeout = ontimeoutCB;
-      }
+      } // set request header
 
-      // set request header
+
       if (dataType === 'json') {
         xhr.responseType = "json";
         xhr.setRequestHeader("Accept", "application/json");
@@ -159,17 +177,13 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-
       xhr.send(sData);
     } else {
       // mode: 'script' | 'jsonp'
-
       var oHead = document.querySelector('head'),
           oScript = document.createElement('script');
+      oScript.src = url; //set oScript.type
 
-      oScript.src = url;
-
-      //set oScript.type
       oScript.type = 'text/javascript';
 
       if (mode === 'script') {
@@ -178,67 +192,59 @@ __webpack_require__.r(__webpack_exports__);
           oScript.src += '?' + sData;
         }
 
-        var
-        // callback resolve
+        var // callback resolve
         scriptCallback = function scriptCallback(e) {
           // clean oScript
           oHead.removeChild(oScript);
           clearTimeout(oScript.timer);
-
           resolve(e);
-        };
+        }; // callback
 
-        // callback
-        oScript.addEventListener('load', scriptCallback, false);
 
-        // timeout handle
+        oScript.addEventListener('load', scriptCallback, false); // timeout handle
+
         if (timeout) {
           oScript.timer = setTimeout(function () {
             // clean oScript
             oScript.removeEventListener('load', scriptCallback, false);
-            oHead.removeChild(oScript);
+            oHead.removeChild(oScript); // reject err
 
-            // reject err
             reject(new Error('timeout'));
           }, timeout);
         }
       } else if (mode === 'jsonp') {
-        var callbackName = ('jsonp_' + Math.random()).replace(".", "");
+        var callbackName = ('jsonp_' + Math.random()).replace(".", ""); // jsonp callback function
 
-        // jsonp callback function
         window[callbackName] = function (json) {
-          console.log(json);
+          console.log(json); // clean oScript
 
-          // clean oScript
           oHead.removeChild(oScript);
           clearTimeout(oScript.timer);
-          window[callbackName] = null;
+          window[callbackName] = null; // resolve
 
-          // resolve
           resolve(json);
-        };
+        }; // set oScript.src
 
-        // set oScript.src
+
         if (sData) {
           oScript.src += '?' + sData + '&callback=' + callbackName;
         } else {
           oScript.src += '?callback=' + callbackName;
-        }
+        } // timeout handle
 
-        // timeout handle
+
         if (timeout) {
           oScript.timer = setTimeout(function () {
             // clean oScript
             oHead.removeChild(oScript);
-            window[callbackName] = null;
+            window[callbackName] = null; // reject err
 
-            // reject err
             reject(new Error('timeout'));
           }, timeout);
         }
-      }
+      } // send
 
-      // send
+
       oHead.appendChild(oScript);
     }
   });

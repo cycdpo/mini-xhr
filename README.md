@@ -16,6 +16,7 @@
 [david-url]: https://david-dm.org/cycdpo/mini-xhr
 [david-dev-image]: https://david-dm.org/cycdpo/mini-xhr/dev-status.svg?style=flat-square
 [david-dev-url]: https://david-dm.org/cycdpo/mini-xhr?type=dev
+[download-image]: https://img.shields.io/npm/dm/mini-xhr.svg?style=flat-square
 [download-url]: https://npmjs.org/package/mini-xhr
 [jsdelivr-image]: https://data.jsdelivr.com/v1/package/npm/mini-xhr/badge
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/mini-xhr

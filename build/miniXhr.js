@@ -1,5 +1,5 @@
 /*!
- * mini-xhr v0.1.1
+ * mini-xhr v0.1.3
  * Homepage: https://github.com/cycdpo/mini-xhr#readme
  * Released under the MIT License.
  */
@@ -12,7 +12,7 @@
 		exports["miniXhr"] = factory();
 	else
 		root["miniXhr"] = factory();
-})(window, function() {
+})(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -141,7 +141,9 @@ __webpack_require__.r(__webpack_exports__);
         prefix = '&';
       }
 
-      sData += prefix + key + '=' + data[key];
+      if (data.hasOwnProperty(key)) {
+        sData += prefix + key + '=' + data[key];
+      }
     }
 
     if (mode === 'xhr') {

@@ -31,7 +31,8 @@ var config = {
       : 'miniXhr.js',
     library: 'miniXhr',
     libraryTarget: 'umd',
-    libraryExport: 'default'
+    libraryExport: 'default',
+    globalObject: 'this'
   },
 
   resolve: {

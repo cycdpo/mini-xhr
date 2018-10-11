@@ -30,7 +30,10 @@ export default (url, {
         // not first key
         prefix = '&';
       }
-      sData += prefix + key + '=' + data[key];
+
+      if (data.hasOwnProperty(key)) {
+        sData += prefix + key + '=' + data[key];
+      }
     }
 
     if (mode === 'xhr') {
@@ -85,7 +88,7 @@ export default (url, {
 
       if (mode === 'script') {
         // set oScript.src
-        if(sData) {
+        if (sData) {
           oScript.src += '?' + sData;
         }
 
@@ -134,7 +137,7 @@ export default (url, {
         };
 
         // set oScript.src
-        if(sData) {
+        if (sData) {
           oScript.src += '?' + sData + '&callback=' + callbackName;
         } else {
           oScript.src += '?callback=' + callbackName;

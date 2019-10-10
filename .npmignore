@@ -1,13 +1,25 @@
 # IDE
 .idea
+.editorconfig
+
+# doc
+.github
 
 # test
+test
 .travis.yml
+
+# node
+yarn.lock
+yarn-error.log
 
 # project
 src
 static
 dist
 mock
-yarn.lock
+*.config.js
+gulpfile.js
+
+
 

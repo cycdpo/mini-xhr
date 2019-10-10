@@ -1,4 +1,4 @@
-var
+const
   path = require('path')
   , webpack = require('webpack')
   , packageJson = require('./package.json')
@@ -7,18 +7,18 @@ var
   , BrowserSyncPlugin = require('browser-sync-webpack-plugin')
   , HtmlWebpackPlugin = require('html-webpack-plugin')
   , UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-  , CleanWebpackPlugin = require('clean-webpack-plugin')
+  , {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
   // mock api
   , getDataAjax = require('./mock/api/getData.ajax')
 ;
 
-var
+const
   IS_DEVELOPMENT = process.env.NODE_ENV === 'development'
   , IS_PRODUCTION = process.env.NODE_ENV === 'production'
 ;
 
-var config = {
+const config = {
   mode: 'none',
   entry: path.resolve('src', 'index.js'),
 
@@ -26,9 +26,9 @@ var config = {
     path: IS_DEVELOPMENT
       ? path.resolve('dist')
       : path.resolve('build'),
-    filename: IS_PRODUCTION
-      ? 'miniXhr.min.js'
-      : 'miniXhr.js',
+    filename: packageJson.name.replace(/^.+\//g, '') + (() => IS_PRODUCTION
+      ? '.min.js'
+      : '.js')(),
     library: 'miniXhr',
     libraryTarget: 'umd',
     libraryExport: 'default',
@@ -76,9 +76,9 @@ var config = {
   plugins: [
     new webpack.BannerPlugin({
       banner: packageJson.name + ' v' + packageJson.version +
-      '\nHomepage: ' + packageJson.homepage +
-      '\nReleased under the ' + packageJson.license + ' License.'
-    })
+        '\nHomepage: ' + packageJson.homepage +
+        '\nReleased under the ' + packageJson.license + ' License.'
+    }),
   ]
 };
 
@@ -95,8 +95,7 @@ if (IS_DEVELOPMENT) {
       template: path.resolve('./static', 'view', 'index.pug'),
     }),
 
-    new CleanWebpackPlugin(['dist'], {
-      root: path.resolve('./'),
+    new CleanWebpackPlugin({
       verbose: true,
       dry: false
     }),
@@ -125,11 +124,10 @@ if (IS_PRODUCTION) {
   config.plugins.push(
     new webpack.HashedModuleIdsPlugin(),
 
-    new CleanWebpackPlugin(['build'], {
-      root: path.resolve('./'),
+    new CleanWebpackPlugin({
       verbose: true,
       dry: false
-    })
+    }),
   );
 
   config.optimization = {
@@ -145,7 +143,6 @@ if (IS_PRODUCTION) {
             beautify: false
           },
           compress: {
-            warnings: false,
             drop_debugger: true,
             drop_console: true,
             collapse_vars: true,

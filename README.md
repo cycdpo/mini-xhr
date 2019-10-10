@@ -38,35 +38,51 @@ import miniXhr from 'mini-xhr';
 # OR
 const miniXhr = require('mini-xhr');
 
-miniXhr(url [, options])
+miniXhr.get(url [, settings])
   .then((data) => {
     // handle data
   });
 ```
 
-* options:
-  * `mode`: [String] Allows three modes.
-    * `'xhr'`(Default)
-    * `'jsonp'`
-    * `'script'`
-  * `method`: [String] Xhr action.
-    * `'GET'`(Default)
-    * `'POST'`
-    * ...
+### miniXhr supports the following methods:
+#### `miniXhr.get(url, [, settings])`
+* `url`: [String] A string containing the URL to which the request is sent.
+* settings:
   * `data`: [Object] The key-value pair that needs to be transmitted. Default `{}`.
-  * `dataType`: [String] Request data type. Default `''`. Other: `'json'`
-  * `timeout`: [Number] Set the timeout. Default `0`.
+  * `dataType`: [String] Request data type. Default `'json'`.
+  * `contentType`: [String] Setting content type. Default `'application/x-www-form-urlencoded; charset=UTF-8'`.
+  * `timeout`: [Number] Set a timeout for the request. A value of 0 means there will be no timeout. Default `0`.
   * `timeoutCB`: [Function] Set the time-out callback function. Default `null`.
+  
+#### `miniXhr.post(url, [, settings])`
+* `url`: [String] A string containing the URL to which the request is sent.
+* settings:
+  * `data`: [Object] The key-value pair that needs to be transmitted. Default `{}`.
+  * `dataType`: [String] Request data type. Default `'json'`.
+  * `contentType`: [String] Setting content type. Default `'application/x-www-form-urlencoded; charset=UTF-8'`.
+  * `timeout`: [Number] Set a timeout for the request. A value of 0 means there will be no timeout. Default `0`.
+  * `timeoutCB`: [Function] Set the time-out callback function. Default `null`.
+
+#### `miniXhr.script(url, [, settings])`
+* `url`: [String] A string containing the URL to which the request is sent.
+* settings:
+  * `data`: [Object] The key-value pair that needs to be transmitted. Default `{}`.
+  * `timeout`: [Number] Set a timeout for the request. A value of 0 means there will be no timeout. Default `0`.
+
+#### `miniXhr.jsonp(url, [, settings])`
+* `url`: [String] A string containing the URL to which the request is sent.
+* settings:
+  * `data`: [Object] The key-value pair that needs to be transmitted. Default `{}`.
+  * `timeout`: [Number] Set a timeout for the request. A value of 0 means there will be no timeout. Default `0`.
 
 ### Use in browser: E.g.
 ```html
-<script src="miniXhr.min.js"></script>
+<script src="mini-xhr.min.js"></script>
 <script>
-  miniXhr('/getData' , {
-    mode: 'jsonp',
+  miniXhr.jsonp('/getData' , {
     data: {
-      key1: value1,
-      key2: value2,
+      key1: 'value1',
+      key2: 'value2',
     }
   })
     .then(function(data) {
@@ -78,6 +94,6 @@ miniXhr(url [, options])
 ## CDN
 To use via a CDN include this in your html:
 ```text
-<script src="https://cdn.jsdelivr.net/npm/mini-xhr@0/build/miniXhr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mini-xhr@1/build/mini-xhr.min.js"></script>
 ```
 

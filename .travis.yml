@@ -25,4 +25,4 @@ cache:
 
 script:
   - yarn --version
-  - npm run prepare
+  - npm run build

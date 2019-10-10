@@ -42,9 +42,7 @@ html(lang='en')
       document.getElementById('test').addEventListener('click', function () {
         console.log('POST');
 
-        miniXhr('/getData', {
-          dataType: 'json',
-          method: 'POST',
+        miniXhr.post('/getData', {
           data: {
             test: 'test1'
           }

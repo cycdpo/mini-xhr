@@ -1,7 +1,6 @@
 # mini-xhr
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
 [![David deps][david-image]][david-url]
 [![devDependencies Status][david-dev-image]][david-dev-url]
 [![npm download][download-image]][download-url]
@@ -10,8 +9,6 @@
 
 [npm-image]: https://img.shields.io/npm/v/mini-xhr.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/mini-xhr
-[travis-image]: https://img.shields.io/travis/cycdpo/mini-xhr.svg?style=flat-square
-[travis-url]: https://travis-ci.org/cycdpo/mini-xhr
 [david-image]: https://img.shields.io/david/cycdpo/mini-xhr.svg?style=flat-square
 [david-url]: https://david-dm.org/cycdpo/mini-xhr
 [david-dev-image]: https://david-dm.org/cycdpo/mini-xhr/dev-status.svg?style=flat-square
@@ -21,6 +18,12 @@
 [jsdelivr-image]: https://data.jsdelivr.com/v1/package/npm/mini-xhr/badge
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/mini-xhr
 [license-image]: https://img.shields.io/npm/l/mini-xhr.svg?style=flat-square
+
+## This package has been deprecated
+[new-url]: https://github.com/cycjimmy/mini-xhr
+
+This package has been migrated to [@cycjimmy/mini-xhr][new-url] for scoped NPM package. 
+Please switch to [@cycjimmy/mini-xhr][new-url] to stay up to date.
 
 ## Install
 ```shell

@@ -1,6 +1,6 @@
 {
   "name": "mini-xhr",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "xmlHttpRequest in promise",
   "main": "build/mini-xhr.min.js",
   "scripts": {

@@ -1,5 +1,5 @@
 /*!
- * mini-xhr v1.0.0
+ * mini-xhr v1.0.2
  * Homepage: https://github.com/cycdpo/mini-xhr#readme
  * Released under the MIT License.
  */

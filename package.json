@@ -1,8 +1,8 @@
 {
   "name": "mini-xhr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "xmlHttpRequest in promise",
-  "main": "build/miniXhr.min.js",
+  "main": "build/mini-xhr.min.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack --display-modules --display-reasons --display-error-details --watch --color",
     "build": "cross-env NODE_ENV=production webpack --progress --optimize-minimize && webpack --progress --display-modules --display-reasons --display-error-details --color",
